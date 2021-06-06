@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reactive</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script>
+      function defineReactive(obj, key, val) {
+        Object.defineProperty(obj, key, {
+          get() {
+            return val;
+          },
+          set(newVal) {
+            if (newVal != val) {
+              val = newVal;
+              update();
+            }
+          },
+        });
+      }
+
+      const obj = {};
+      // 响应化处理
+      defineReactive(obj, "foo", "");
+      // 修改数值
+      obj.foo = new Date().toLocaleTimeString();
+      setInterval(() => {
+        obj.foo = new Date().toLocaleTimeString();
+      }, 1000);
+
+      //更新界面
+      function update() {
+        app.innerHTML = obj.foo;
+      }
+    </script>
+  </body>
+</html>

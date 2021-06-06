@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>自定义MVVM框架(仿Vue)</title>
+  </head>
+  <body>
+    <div id="app">
+      <p>插值: {{counter}}</p>
+      <p v-text="title">指令: v-text</p>
+      <p v-html="desc">指令: v-html</p>
+      <button @click="add">事件</button>
+      <input v-model="title" type="text" />
+    </div>
+    <script type="module">
+      import { Vue } from "./src/vue.js";
+      const app = new Vue({
+        el: "#app",
+        data: {
+          title: "hello",
+          counter: 1,
+          desc: "<h2 style='color:red'>自定义MVVM框架(仿Vue)</h2>",
+        },
+        methods: {
+          add() {
+            this.counter++;
+          },
+        },
+      });
+      // setInterval(() => {
+      //   app.counter++;
+      // }, 1000);
+    </script>
+  </body>
+</html>
